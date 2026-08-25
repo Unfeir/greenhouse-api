@@ -35,3 +35,13 @@ class ReadingPage(BaseModel):
     sensor_id: str
     readings: list[Reading]
     next_cursor: str | None
+
+
+class SensorSummary(BaseModel):
+    """Temperature statistics computed across every stored reading for a sensor."""
+
+    sensor_id: str
+    average: float | None
+    minimum: float | None
+    maximum: float | None
+    count: int

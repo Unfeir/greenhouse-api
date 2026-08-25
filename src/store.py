@@ -19,6 +19,8 @@ SENSORS: list[Sensor] = [
 
 _START = datetime(2026, 8, 1, tzinfo=UTC)
 
+_STORED_READING_COUNTS: dict[str, int] = {"s-1": 24, "s-2": 1, "s-3": 0}
+
 
 def readings_for(sensor_id: str, *, count: int = 24) -> list[Reading]:
     """A deterministic series, so tests can assert on numbers."""
@@ -31,3 +33,8 @@ def readings_for(sensor_id: str, *, count: int = 24) -> list[Reading]:
         )
         for hour in range(count)
     ]
+
+
+def all_readings_for(sensor_id: str) -> list[Reading]:
+    """Every reading stored for a sensor, not just a requested page of them."""
+    return readings_for(sensor_id, count=_STORED_READING_COUNTS.get(sensor_id, 0))
