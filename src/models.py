@@ -35,3 +35,17 @@ class ReadingPage(BaseModel):
     sensor_id: str
     readings: list[Reading]
     next_cursor: str | None
+
+
+class SensorStats(BaseModel):
+    """Temperature statistics for one sensor, over all its stored readings.
+
+    Per house rule, temperature aggregates cross the wire as one-decimal-place
+    strings rather than floats.
+    """
+
+    sensor_id: str
+    mean_celsius: str | None
+    low_celsius: str | None
+    high_celsius: str | None
+    n_readings: int
