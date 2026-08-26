@@ -35,3 +35,13 @@ class ReadingPage(BaseModel):
     sensor_id: str
     readings: list[Reading]
     next_cursor: str | None
+
+
+class SensorStats(BaseModel):
+    """Temperature summary statistics for one sensor over a window of readings."""
+
+    sensor_id: str
+    mean_celsius: str
+    low_celsius: str
+    high_celsius: str
+    n_readings: int
